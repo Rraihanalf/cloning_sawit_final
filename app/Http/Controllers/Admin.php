@@ -294,6 +294,7 @@ class Admin extends Controller
         $lapangan = Lapangan::where('id_lapangan', $id_lapangan)->first();
         $deleted = Lapangan::where('id_lapangan', $id_lapangan)->delete();
         Jadwal::where('id_lapangan', $lapangan['id_lapangan'])->delete();
+        Pohon::where('id_lapangan', $lapangan['id_lapangan'])->update(['id_lapangan' => null]);
 
 
         if ($deleted) {
@@ -376,7 +377,9 @@ class Admin extends Controller
 
     public function destroy_sampel($id_sampel)
     {
+        $sampel = Sampel::where('id_sampel', $id_sampel)->first();
         $deleted = Sampel::where('id_sampel', $id_sampel)->delete();
+        Pohon::where('id_sampel', $sampel['id_sampel'])->update(['id_sampel' => null]);
 
         if ($deleted) {
             return redirect()->intended('sampel/admin')->with('success', 'Data sampel berhasil dihapus!');
