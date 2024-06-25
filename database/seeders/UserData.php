@@ -409,7 +409,7 @@ class UserData extends Seeder
         $lab = [
             [
                 'id_lab' => 'S-001',
-                'nama_lab' => 'Laboratorium Kimia',
+                'nama_lab' => 'Laboratorium F012',
                 'kapasitas' => '30',
                 'jumlah_pegawai' => '5',
                 'created_at' => now(),
@@ -417,7 +417,7 @@ class UserData extends Seeder
             ],
             [
                 'id_lab' => 'S-002',
-                'nama_lab' => 'Laboratorium Fisika',
+                'nama_lab' => 'Laboratorium K043',
                 'kapasitas' => '25',
                 'jumlah_pegawai' => '4',
                 'created_at' => now(),
@@ -425,7 +425,7 @@ class UserData extends Seeder
             ],
             [
                 'id_lab' => 'S-003',
-                'nama_lab' => 'Laboratorium Biologi',
+                'nama_lab' => 'Laboratorium L004',
                 'kapasitas' => '35',
                 'jumlah_pegawai' => '6',
                 'created_at' => now(),
@@ -433,7 +433,7 @@ class UserData extends Seeder
             ],
             [
                 'id_lab' => 'S-004',
-                'nama_lab' => 'Laboratorium Komputer',
+                'nama_lab' => 'Laboratorium M093',
                 'kapasitas' => '40',
                 'jumlah_pegawai' => '3',
                 'created_at' => now(),
@@ -441,7 +441,7 @@ class UserData extends Seeder
             ],
             [
                 'id_lab' => 'S-005',
-                'nama_lab' => 'Laboratorium Teknik',
+                'nama_lab' => 'Laboratorium A829',
                 'kapasitas' => '20',
                 'jumlah_pegawai' => '4',
                 'created_at' => now(),
