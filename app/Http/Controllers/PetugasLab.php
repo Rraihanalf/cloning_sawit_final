@@ -248,6 +248,7 @@ class PetugasLab extends Controller
             'id_lapangan' => 'required|string',
             'tgl_tanam' => 'required|date',
             'tinggi_pohon' => 'required|numeric',
+            'tgl_kematian' => 'nullable|date',
             'deskripsi' => 'required|string|max:255',
         ]);
         
@@ -257,6 +258,10 @@ class PetugasLab extends Controller
         $last_part = array_pop($id_pohon_parts); 
 
         $new_id_pohon = $validatedData['id_sampel'] . '-' . $validatedData['id_lapangan'] . '-' . $last_part;
+        
+        $daya_hidup = $request->tgl_kematian ? 'Mati' : 'Hidup';
+
+        // dd($new_id_pohon, $validatedData, $daya_hidup);
 
         $affected = Pohon::where('id_pohon', $id_pohon)->update([
             'id_pohon' => $new_id_pohon,
@@ -264,7 +269,9 @@ class PetugasLab extends Controller
             'id_lapangan' => $validatedData['id_lapangan'],
             'tgl_tanam' => $validatedData['tgl_tanam'],
             'tinggi_pohon' => $validatedData['tinggi_pohon'],
+            'tgl_kematian' => $request->tgl_kematian,
             'deskripsi' => $validatedData['deskripsi'],
+            'daya_hidup' => $daya_hidup,
             'updated_at' => now(),
         ]);
         if ($affected) {

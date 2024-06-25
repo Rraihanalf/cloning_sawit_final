@@ -109,10 +109,6 @@
     <script src="{{ asset('js/page/index-0.js') }}"></script>
     
     <script>
-        document.querySelector('.tambah-button').addEventListener('click', function() {
-            window.location.href = "{{ route('sampel-create') }}";
-        });
-
         document.getElementById('search-input').addEventListener('input', function() {
             let filter = this.value.toLowerCase();
             let rows = document.querySelectorAll('#example1 tbody tr');

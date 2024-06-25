@@ -77,6 +77,21 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label>Tanggal Kematian</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <input type="date"
+                                        class="form-control @error('tgl_kematian') is-invalid @enderror" name="tgl_kematian" value="{{ $pohon->tgl_kematian }}">
+                                </div>
+                                @error('tgl_kematian')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label>Deskripsi</label>
                                 <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" data-height="150">{{ $pohon->deskripsi }}</textarea>
                                 @error('deskripsi')
