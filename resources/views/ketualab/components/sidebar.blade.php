@@ -27,6 +27,20 @@
                 </a>
             </li>
 
+            <li class="nav-item {{ Request::is('laboratorium/ketualab') ? 'active' : '' }}">
+                <a href="/laboratorium/ketualab" class="nav-link">
+                    <i class="fas fa-flask"></i>
+                    <span>Data Laboratorium</span>
+                </a>
+            </li>
+            
+            <li class="nav-item {{ Request::is('lapangan/ketualab') ? 'active' : '' }}">
+                <a href="/lapangan/ketualab" class="nav-link">
+                    <i class="fas fa-tree"></i>
+                    <span>Data Lapangan</span>
+                </a>
+            </li>
+
             <li class="nav-item {{ Request::is('jadwal/ketualab') ? 'active' : '' }}">
                 <a href="/jadwal/ketualab" class="nav-link">
                     <i class="fas fa-calendar"></i>

@@ -50,10 +50,5 @@
     <script src="{{ asset('library/fullcalendar/dist/fullcalendar.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
-    <script src="{{ asset('js/page/modules-calendar.js') }}"></script>
-    <script>
-        document.querySelector('.jadwal-btn').addEventListener('click', function() {
-            window.location.href = "{{ route('jadwal-create') }}";
-        });
-    </script>
+    <script src="{{ asset('js/page/modules-calendar-manager.js') }}"></script>
 @endpush

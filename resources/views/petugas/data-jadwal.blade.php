@@ -45,5 +45,5 @@
     <script src="{{ asset('library/fullcalendar/dist/fullcalendar.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
-    <script src="{{ asset('js/page/modules-calendar.js') }}"></script>
+    <script src="{{ asset('js/page/modules-calendar-petugas.js') }}"></script>
 @endpush

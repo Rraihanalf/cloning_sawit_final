@@ -18,6 +18,18 @@ class KetuaLab extends Controller
         return view('ketualab.dashboard')->with('data', $data);
     }
 
+    public function showlab(){
+        $data = Laboratorium::all();
+
+        return view('ketualab.data-laboratorium')->with('data', $data);
+    }
+
+    public function showlapangan(){
+        $data = Lapangan::all();
+
+        return view('ketualab.data-lapangan')->with('data', $data);
+    }
+
     public function showjadwal(){
         return view('ketualab.data-jadwal');
     }

@@ -86,7 +86,7 @@ Route::group(['middleware' => ['auth']], function(){
             Route::get('pohon/delete/{id_pohon}', 'delete_pohon')->name('pohon-delete');
 
             Route::get('jadwal/petugas', 'showjadwal');
-            Route::get('api/jadwal', 'get_jadwal');
+            Route::get('get/jadwal', 'get_jadwal');
 
             Route::get('sampel/petugas', 'showsampel');
             Route::get('sampel/create', 'add_sampel')->name('sampel-create');
@@ -109,6 +109,9 @@ Route::group(['middleware' => ['auth']], function(){
             Route::post('pohon/{id_pohon}/set-tanggal-kematian', 'update_tglmati')->name('update-tanggal-kematian');
             Route::post('pohon/{id_pohon}/set-bukti-kematian', 'update_buktimati')->name('update-bukti-kematian');
             Route::get('pohon/delete/{id_pohon}', 'delete_pohon')->name('pohon-delete');
+
+            Route::get('laboratorium/ketualab', 'showlab');
+            Route::get('lapangan/ketualab', 'showlapangan');
 
             Route::get('jadwal/ketualab', 'showjadwal');
             Route::get('api/jadwal', 'get_jadwal');
@@ -134,7 +137,7 @@ Route::group(['middleware' => ['auth']], function(){
             Route::get('lapangan/manager', 'showlapangan');
 
             Route::get('jadwal/manager', 'showjadwal');
-            Route::get('api/jadwal', 'get_jadwal');
+            Route::get('ambil/jadwal', 'get_jadwal');
 
             Route::get('sampel/manager', 'showsampel');
             Route::get('sampel/detail/{id_sampel}', 'detail_sampel')->name('sampel-detail');
