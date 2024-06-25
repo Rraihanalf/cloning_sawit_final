@@ -35,16 +35,19 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Jenis Kelamin</label>
-                                <div class="selectgroup w-100">
+                                <div class="selectgroup w-100 @error('jenis_kelamin') is-invalid @enderror">
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="jenis_kelamin" value="Laki-laki" class="selectgroup-input" {{ old('jenis_kelamin') == 'Laki-laki' ? 'checked' : '' }}>
+                                        <input type="radio" name="jenis_kelamin" value="Laki-laki" class="selectgroup-input" {{ old('jenis_kelamin') == 'Laki-laki' ? 'checked' : '' }} >
                                         <span class="selectgroup-button">Laki-laki</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="jenis_kelamin" value="Perempuan" class="selectgroup-input" {{ old('jenis_kelamin') == 'Perempuan' ? 'checked' : '' }}>
+                                        <input type="radio" name="jenis_kelamin" value="Perempuan" class="selectgroup-input" {{ old('jenis_kelamin') == 'Perempuan' ? 'checked' : '' }} >
                                         <span class="selectgroup-button">Perempuan</span>
                                     </label>
                                 </div>
+                                @error('jenis_kelamin')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Lab</label>

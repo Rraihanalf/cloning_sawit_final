@@ -10,7 +10,7 @@
         </div>
         <div class="section-body">
             <div class="card">
-                <form action="{{ route('sampel-update', $sampel->id_sampel) }}" method="post">
+                <form action="{{ route('sampel-update-petugas', $sampel->id_sampel) }}" method="post">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">

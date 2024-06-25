@@ -24,15 +24,24 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Luas</label>
-                                <input type="text" class="form-control" name="luas" value="{{ $lapangan->luas }}">
+                                <input type="text" class="form-control @error('luas') is-invalid @enderror" name="luas" value="{{ $lapangan->luas }}">
+                                @error('luas')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Lokasi</label>
-                                <input type="text" class="form-control" name="lokasi" value="{{ $lapangan->lokasi }}">
+                                <input type="text" class="form-control @error('lokasi') is-invalid @enderror" name="lokasi" value="{{ $lapangan->lokasi }}">
+                                @error('lokasi')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Kondisi Tanah</label>
-                                <input type="text" class="form-control" name="kondisi_tanah" value="{{ $lapangan->kondisi_tanah }}">
+                                <input type="text" class="form-control @error('kondisi_tanah') is-invalid @enderror" name="kondisi_tanah" value="{{ $lapangan->kondisi_tanah }}">
+                                @error('kondisi_tanah')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="card-footer text-right">

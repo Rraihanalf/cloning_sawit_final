@@ -39,14 +39,16 @@
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="text" class="form-control" name="password">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password">
+                                @error('password')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Level</label>
-                                <div class="selectgroup w-100">
+                                <div class="selectgroup w-100 @error('level') is-invalid @enderror">
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="level" value="1" class="selectgroup-input"
-                                            checked="">
+                                        <input type="radio" name="level" value="1" class="selectgroup-input">
                                         <span class="selectgroup-button">Admin</span>
                                     </label>
                                     <label class="selectgroup-item">
@@ -62,6 +64,9 @@
                                         <span class="selectgroup-button">Manager</span>
                                     </label>
                                 </div>
+                                @error('level')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="card-footer text-right">

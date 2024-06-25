@@ -26,7 +26,7 @@
             <div class="section-body">
 
                 <div class="card">
-                    <form action="{{ route('pohon-update', $pohon->id_pohon) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('pohon-update-petugas', $pohon->id_pohon) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="card-header">
                             <h4>Edit Pohon</h4>

@@ -45,9 +45,7 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4 mb-3">
-                                                    <button class="tambah-button" type="button">Tambah</button>
-                                                </div>
+                                
                                             </div>
 
                                             <table id="example1" class="table table-bordered table-striped">

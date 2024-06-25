@@ -15,11 +15,14 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Username</label>
-                            <input type="text" class="form-control" name="username" value="{{ $user->username }}">
+                            <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ $user->username }}">
+                            @error('username')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="form-label">Jenis Kelamin</label>
-                            <div class="selectgroup w-100">
+                            <div class="selectgroup w-100 @error('level') is-invalid @enderror">
                                 <label class="selectgroup-item">
                                     <input type="radio" name="level" value="1" class="selectgroup-input" {{ $user->level == '1' ? 'checked' : '' }}>
                                     <span class="selectgroup-button">Admin</span>
@@ -37,6 +40,9 @@
                                     <span class="selectgroup-button">Manager</span>
                                 </label>
                             </div>
+                            @error('level')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Password (Biarkan kosong jika tidak ingin merubah)</label>

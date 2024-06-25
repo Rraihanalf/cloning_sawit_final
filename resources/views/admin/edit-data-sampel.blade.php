@@ -15,19 +15,28 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Lab</label>
-                            <select class="form-control" name="id_lab">
+                            <select class="form-control @error('id_lab') is-invalid @enderror" name="id_lab">
                                 @foreach ($labs as $lab)
                                     <option value="{{ $lab->id_lab }}" {{ $sampel->id_lab == $lab->id_lab ? 'selected' : '' }}>{{ $lab->nama_lab }}</option>
                                 @endforeach
                             </select>
+                            @error('id_lab')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Jenis Bibit</label>
-                            <input type="text" class="form-control" name="jenis_bibit" value="{{ $sampel->jenis_bibit }}">
+                            <input type="text" class="form-control @error('jenis_bibit') is-invalid @enderror" name="jenis_bibit" value="{{ $sampel->jenis_bibit }}">
+                            @error('jenis_bibit')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Asal Bibit</label>
-                            <input type="text" class="form-control" name="asal_bibit" value="{{ $sampel->asal_bibit }}">
+                            <input type="text" class="form-control @error('asal_bibit') is-invalid @enderror" name="asal_bibit" value="{{ $sampel->asal_bibit }}">
+                            @error('asal_bibit')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="card-footer text-right">

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('sampels', function (Blueprint $table) {
             // $table->id();
             $table->string('id_sampel')->primary();
-            $table->string('id_lab');
+            $table->string('id_lab')->nullable();
             $table->string('jenis_bibit');
             $table->string('asal_bibit');
             $table->timestamps();

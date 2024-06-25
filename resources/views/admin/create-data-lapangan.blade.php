@@ -28,15 +28,24 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Luas Lapangan</label>
-                                <input type="text" class="form-control" name="luas" placeholder="Exp : 150.00">
+                                <input type="text" class="form-control @error('luas') is-invalid @enderror" name="luas" placeholder="Exp : 150.00">
+                                @error('luas')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Lokasi</label>
-                                <input type="text" class="form-control" name="lokasi">
+                                <input type="text" class="form-control @error('lokasi') is-invalid @enderror" name="lokasi">
+                                @error('lokasi')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Kondisi Tanah</label>
-                                <input type="text" class="form-control" name="kondisi_tanah">
+                                <input type="text" class="form-control @error('kondisi_tanah') is-invalid @enderror" name="kondisi_tanah">
+                                @error('kondisi_tanah')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="card-footer text-right">

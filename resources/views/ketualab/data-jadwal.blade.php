@@ -54,7 +54,7 @@
     <script src="{{ asset('js/page/modules-calendar.js') }}"></script>
     <script>
         document.querySelector('.jadwal-btn').addEventListener('click', function() {
-            window.location.href = "{{ route('jadwal-create') }}";
+            window.location.href = "{{ route('jadwal-create-ketualab') }}";
         });
     </script>
 @endpush

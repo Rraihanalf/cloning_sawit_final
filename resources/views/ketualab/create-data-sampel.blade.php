@@ -20,7 +20,7 @@
             <div class="section-body">
 
                 <div class="card">
-                    <form action="/sampel/create/store" method="post" enctype="multipart/form-data">
+                    <form action="/sampel/create/store/ketualab" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="card-header">
                             <h4>Sampel Baru</h4>

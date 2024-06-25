@@ -86,7 +86,7 @@
                                                     <td>
                                                         <div class="row">
                                                             <div class="col-md">
-                                                                <a href="{{ route('pohon-detail', $data->id_pohon) }}" aria-placeholder="Detail">
+                                                                <a href="{{ route('pohon-detail-manager', $data->id_pohon) }}" aria-placeholder="Detail">
                                                                     <i class="nav-icon fas fa-print"></i> Detail
                                                                 </a>
                                                             </div>
@@ -200,10 +200,6 @@
     <script src="{{ asset('js/page/index-0.js') }}"></script>
     
     <script>
-        document.querySelector('.tambah-button').addEventListener('click', function() {
-            window.location.href = "{{ route('pohon-create') }}";
-        });
-
         document.getElementById('search-input').addEventListener('input', function() {
             let filter = this.value.toLowerCase();
             let rows = document.querySelectorAll('#example1 tbody tr');
@@ -247,19 +243,6 @@
                 $(this).val(picker.startDate.format('YYYY-MM-DD'));
             });
         });
-
-        function setTanggalKematian(id_pohon) {
-            // Set action for the form
-            $('#setTanggalForm').attr('action', `/pohon/${id_pohon}/set-tanggal-kematian`);
-            // Show the modal
-            $('#setTanggalModal').modal('show');
-        }
-
-        function setBuktiKematian(id_pohon) {
-            $('#buktiIdPohon').val(id_pohon); // Mengatur nilai ID pohon pada input hidden
-            $('#setBuktiForm').attr('action', `/pohon/${id_pohon}/set-bukti-kematian`);
-            $('#setBuktiModal').modal('show'); // Menampilkan modal
-        }
 
         function lihatBuktiKematian(bukti_kematian_path) {
         // Set the image source in the modal

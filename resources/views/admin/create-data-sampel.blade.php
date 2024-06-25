@@ -39,11 +39,17 @@
                             </div>
                             <div class="form-group">
                                 <label>Jenis Bibit</label>
-                                <input type="text" class="form-control" name="jenis_bibit">
+                                <input type="text" class="form-control @error('jenis_bibit') is-invalid @enderror" name="jenis_bibit">
+                                @error('jenis_bibit')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Asal Bibit</label>
-                                <input type="text" class="form-control" name="asal_bibit">
+                                <input type="text" class="form-control @error('asal_bibit') is-invalid @enderror" name="asal_bibit">
+                                @error('asal_bibit')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="card-footer text-right">

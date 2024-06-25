@@ -89,13 +89,13 @@
                                                     <td>
                                                         <div class="row">
                                                             <div class="col-md">
-                                                                <a href="{{ route('pohon-edit', $data->id_pohon) }}" aria-placeholder="Detail">
+                                                                <a href="{{ route('pohon-edit-petugas', $data->id_pohon) }}" aria-placeholder="Detail">
                                                                     <i class="nav-icon fas fa-edit" style="color:green;"></i>
                                                                 </a>
-                                                                <a href="{{ route('pohon-detail', $data->id_pohon) }}" aria-placeholder="Detail">
+                                                                <a href="{{ route('pohon-detail-petugas', $data->id_pohon) }}" aria-placeholder="Detail">
                                                                     <i class="nav-icon fas fa-print"></i>
                                                                 </a>
-                                                                <a href="{{ route('pohon-delete', $data->id_pohon) }}" aria-placeholder="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
+                                                                <a href="{{ route('pohon-delete-petugas', $data->id_pohon) }}" aria-placeholder="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
                                                                     <i class="nav-icon fas fa-trash" style="color:red;"></i>
                                                                 </a>
                                                             </div>
@@ -210,7 +210,7 @@
     
     <script>
         document.querySelector('.tambah-button').addEventListener('click', function() {
-            window.location.href = "{{ route('pohon-create') }}";
+            window.location.href = "{{ route('pohon-create-petugas') }}";
         });
 
         document.getElementById('search-input').addEventListener('input', function() {
@@ -259,14 +259,14 @@
 
         function setTanggalKematian(id_pohon) {
             // Set action for the form
-            $('#setTanggalForm').attr('action', `/pohon/${id_pohon}/set-tanggal-kematian`);
+            $('#setTanggalForm').attr('action', `/pohon/${id_pohon}/set-tanggal-kematian/petugas`);
             // Show the modal
             $('#setTanggalModal').modal('show');
         }
 
         function setBuktiKematian(id_pohon) {
             $('#buktiIdPohon').val(id_pohon); // Mengatur nilai ID pohon pada input hidden
-            $('#setBuktiForm').attr('action', `/pohon/${id_pohon}/set-bukti-kematian`);
+            $('#setBuktiForm').attr('action', `/pohon/${id_pohon}/set-bukti-kematian/petugas`);
             $('#setBuktiModal').modal('show'); // Menampilkan modal
         }
 

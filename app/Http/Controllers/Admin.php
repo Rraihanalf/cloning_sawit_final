@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jadwal;
 use App\Models\Laboratorium;
 use App\Models\Lapangan;
 use Illuminate\Http\Request;
@@ -37,7 +38,7 @@ class Admin extends Controller
             'nama_pegawai' => 'required|string|max:255',
             'jenis_kelamin' => 'required|string',
             'email_pegawai' => 'required|email|unique:pegawais,email_pegawai',
-            'no_hp_pegawai' => 'required|numeric',
+            'no_hp_pegawai' => 'required|unique:pegawais,no_hp_pegawai|numeric|digits_between:8,14',
             'id_lab' => 'required',
         ]);
 
@@ -95,7 +96,21 @@ class Admin extends Controller
                            'email_pegawai' => $validatedData['email_pegawai'],
                            'no_hp_pegawai' => $validatedData['no_hp_pegawai'],
                        ]);
-
+        $updatelab = DB::table('pegawais')
+                       ->where('id_lab', $validatedData['id_lab'])
+                       ->count();
+        Laboratorium::where('id_lab', $validatedData['id_lab'])
+                       ->update([
+                           'jumlah_pegawai' => $updatelab,
+                           ]);
+        $updatelabOld = DB::table('pegawais')
+                           ->where('id_lab', $request->id_lab_old)
+                           ->count();
+        Laboratorium::where('id_lab', $request->id_lab_old)
+                           ->update([
+                               'jumlah_pegawai' => $updatelabOld,
+                               ]);
+                        
         if ($affected) {
             return redirect()->intended('pegawai/admin')->with('success', 'Data Pegawai Berhasil Diupdate');
         } else {
@@ -105,13 +120,23 @@ class Admin extends Controller
 
     public function destroy_pegawai($id_pegawai)
     {
+        $pegawai = Pegawai::where('id_pegawai', $id_pegawai)->first();
         $deleted = Pegawai::where('id_pegawai', $id_pegawai)->delete();
+        $updatelab = DB::table('pegawais')
+                    ->where('id_lab', $pegawai['id_lab'])
+                    ->count();
+        Laboratorium::where('id_lab', $pegawai['id_lab'])
+                    ->update([
+                        'jumlah_pegawai' => $updatelab,
+                        ]);
+        User::where('id_pegawai', $pegawai['id_pegawai'])->delete();
 
         if ($deleted) {
             return redirect()->intended('pegawai/admin')->with('success', 'Pegawai deleted successfully');
         }
 
         return redirect()->route('pegawai-admin')->with('error', 'Pegawai not found');
+
     }
 
     public function showlab(){
@@ -180,7 +205,10 @@ class Admin extends Controller
 
     public function destroy_lab($id_lab)
     {
+        $lab = Laboratorium::where('id_lab', $id_lab)->first();
         $deleted = Laboratorium::where('id_lab', $id_lab)->delete();
+        Pegawai::where('id_lab', $lab['id_lab'])->update(['id_lab' => null]);
+        Sampel::where('id_lab', $lab['id_lab'])->update(['id_lab' => null]);
 
         if ($deleted) {
             return redirect()->intended('laboratorium/admin')->with('success', 'Laboratorium deleted successfully');
@@ -263,7 +291,10 @@ class Admin extends Controller
 
     public function destroy_lapangan($id_lapangan)
     {
+        $lapangan = Lapangan::where('id_lapangan', $id_lapangan)->first();
         $deleted = Lapangan::where('id_lapangan', $id_lapangan)->delete();
+        Jadwal::where('id_lapangan', $lapangan['id_lapangan'])->delete();
+
 
         if ($deleted) {
             return redirect()->intended('lapangan/admin')->with('success', 'Lapangan deleted successfully');

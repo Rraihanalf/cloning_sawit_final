@@ -32,7 +32,7 @@
             <div class="section-body">
 
                 <div class="card">
-                    <form action="/pohon/create/store" method="post" enctype="multipart/form-data">
+                    <form action="/pohon/create/store/ketualab" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="card-header">
                             <h4>Pohon Baru</h4>

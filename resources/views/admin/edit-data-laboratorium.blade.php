@@ -24,11 +24,17 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Nama Laboratorium</label>
-                                <input type="text" class="form-control" name="nama_lab" value="{{ $labs->nama_lab }}">
+                                <input type="text" class="form-control @error('nama_lab') is-invalid @enderror" name="nama_lab" value="{{ $labs->nama_lab }}">
+                                @error('nama_lab')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Kapasitas</label>
-                                <input type="text" class="form-control" name="kapasitas" value="{{ $labs->kapasitas }}">
+                                <input type="text" class="form-control @error('kapasitas') is-invalid @enderror" name="kapasitas" value="{{ $labs->kapasitas }}">
+                                @error('kapasitas')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="card-footer text-right">

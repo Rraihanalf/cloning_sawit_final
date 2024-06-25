@@ -70,13 +70,13 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-md">
-                                                                    <a href="{{ route('sampel-edit', $data->id_sampel) }}" aria-placeholder="Edit">
+                                                                    <a href="{{ route('sampel-edit-petugas', $data->id_sampel) }}" aria-placeholder="Edit">
                                                                         <i class="nav-icon fas fa-edit" style="color: green;"></i>
                                                                     </a>
-                                                                    <a href="{{ route('sampel-detail', $data->id_sampel) }}"  aria-placeholder="Detail">
+                                                                    <a href="{{ route('sampel-detail-petugas', $data->id_sampel) }}"  aria-placeholder="Detail">
                                                                         <i class="nav-icon fas fa-print"></i>
                                                                     </a>
-                                                                    <a href="{{ route('sampel-delete', $data->id_sampel) }}" aria-placeholder="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
+                                                                    <a href="{{ route('sampel-delete-petugas', $data->id_sampel) }}" aria-placeholder="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
                                                                         <i class="nav-icon fas fa-trash" style="color: red;"></i>
                                                                     </a>
                                                                 </div>
@@ -126,7 +126,7 @@
     
     <script>
         document.querySelector('.tambah-button').addEventListener('click', function() {
-            window.location.href = "{{ route('sampel-create') }}";
+            window.location.href = "{{ route('sampel-create-petugas') }}";
         });
 
         document.getElementById('search-input').addEventListener('input', function() {
