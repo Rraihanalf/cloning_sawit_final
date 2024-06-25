@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('pohons', function (Blueprint $table) {
             // $table->id();
             $table->string('id_pohon')->primary();
-            $table->string('id_sampel');
-            $table->string('id_lapangan');
+            $table->string('id_sampel')->nullable();
+            $table->string('id_lapangan')->nullable();
             $table->date('tgl_tanam');
             $table->string('daya_hidup')->default('Hidup');
             $table->float('tinggi_pohon');

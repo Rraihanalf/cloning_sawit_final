@@ -14,7 +14,14 @@ class Manager extends Controller
     public function index(){
         $data = Pohon::all();
 
-        return view('manager.dashboard')->with('data', $data);
+        $sortedData = $data->sortBy(function($item) {
+            $parts = explode('-', $item->id_pohon);
+            return end($parts);
+        });
+
+        $sortedData = $sortedData->values();
+
+        return view('manager.dashboard')->with('data', $sortedData);
     }
 
     public function showjadwal(){

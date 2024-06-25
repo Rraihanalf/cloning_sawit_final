@@ -15,7 +15,14 @@ class PetugasLab extends Controller
     public function index(){
         $data = Pohon::all();
 
-        return view('petugas.dashboard')->with('data', $data);
+        $sortedData = $data->sortBy(function($item) {
+            $parts = explode('-', $item->id_pohon);
+            return end($parts);
+        });
+
+        $sortedData = $sortedData->values();
+
+        return view('petugas.dashboard')->with('data', $sortedData);
     }
 
     public function showjadwal(){
@@ -51,7 +58,7 @@ class PetugasLab extends Controller
             return redirect()->intended('pegawai/petugas')->with('error', 'Pegawai not found');
         }
     
-        $labs = Laboratorium::all(); // Asumsi bahwa Anda memiliki model Lab dan ingin menampilkan semua lab di dropdown
+        $labs = Laboratorium::all();
         return view('petugas.detail-data-sampel', compact('sampel', 'labs'));
     }
 
@@ -211,27 +218,22 @@ class PetugasLab extends Controller
 
     public function update_buktimati(Request $request, $id_pohon){
 
-        // Validasi form
         $request->validate([
             'bukti_kematian' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120', // Maksimal 2MB
         ]);
 
-        // Cari pohon berdasarkan ID
         $pohon = Pohon::where('id_pohon', $id_pohon)->first();
 
         if (!$pohon) {
             return redirect()->back()->with('error', 'Pohon tidak ditemukan.');
         }
 
-        // Proses upload gambar
         if ($request->hasFile('bukti_kematian')) {
             $file = $request->file('bukti_kematian');
             $fileName = time() . '_' . $file->getClientOriginalName();
             
-            // Simpan file di public/bukti_kematian
             $file->move(public_path('bukti_kematian'), $fileName);
 
-            // Update path bukti kematian pada record pohon
             $pohon->where('id_pohon', $id_pohon)->update(['bukti_kematian' => 'bukti_kematian/' . $fileName]);
 
             return redirect()->intended('/petugas')->with('success', 'Bukti kematian berhasil diunggah.');
@@ -248,17 +250,23 @@ class PetugasLab extends Controller
             'tinggi_pohon' => 'required|numeric',
             'deskripsi' => 'required|string|max:255',
         ]);
+        
+        $pohon = Pohon::where('id_pohon', $id_pohon)->firstOrFail();
 
-        // dd($validatedData);
+        $id_pohon_parts = explode('-', $pohon->id_pohon);
+        $last_part = array_pop($id_pohon_parts); 
 
-        $affected = Pohon::where('id_pohon', $id_pohon)
-                        ->update([
-                            'id_sampel' => $validatedData['id_sampel'],
-                            'id_lapangan' => $validatedData['id_lapangan'],
-                            'tgl_tanam' => $validatedData['tgl_tanam'],
-                            'tinggi_pohon' => $validatedData['tinggi_pohon'],
-                            'deskripsi' => $validatedData['deskripsi']
-                        ]);
+        $new_id_pohon = $validatedData['id_sampel'] . '-' . $validatedData['id_lapangan'] . '-' . $last_part;
+
+        $affected = Pohon::where('id_pohon', $id_pohon)->update([
+            'id_pohon' => $new_id_pohon,
+            'id_sampel' => $validatedData['id_sampel'],
+            'id_lapangan' => $validatedData['id_lapangan'],
+            'tgl_tanam' => $validatedData['tgl_tanam'],
+            'tinggi_pohon' => $validatedData['tinggi_pohon'],
+            'deskripsi' => $validatedData['deskripsi'],
+            'updated_at' => now(),
+        ]);
         if ($affected) {
             return redirect()->intended('/petugas')->with('success', 'Data Pohon Berhasil Diupdate');
         } else {
@@ -273,7 +281,6 @@ class PetugasLab extends Controller
             return redirect()->back()->with('error', 'Pohon tidak ditemukan.');
         }
 
-        // Hapus bukti kematian dari storage
         if ($pohon->bukti_kematian) {
             $buktiPath = public_path($pohon->bukti_kematian);
 
@@ -282,7 +289,6 @@ class PetugasLab extends Controller
             }
         }
 
-        // Hapus record pohon dari database
         $deleted = Pohon::where('id_pohon', $id_pohon)->delete();
 
         if ($deleted) {
