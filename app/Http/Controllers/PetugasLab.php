@@ -219,7 +219,7 @@ class PetugasLab extends Controller
     public function update_buktimati(Request $request, $id_pohon){
 
         $request->validate([
-            'bukti_kematian' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120', // Maksimal 2MB
+            'bukti_kematian' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
         $pohon = Pohon::where('id_pohon', $id_pohon)->first();
@@ -239,7 +239,7 @@ class PetugasLab extends Controller
             return redirect()->intended('/petugas')->with('success', 'Bukti kematian berhasil diunggah.');
         }
 
-        return redirect()->back()->with('error', 'Gagal mengunggah bukti kematian.');
+        return redirect()->intended('/petugas')->with('error', 'Gagal mengunggah bukti kematian.');
     }   
 
     public function update_pohon(Request $request, $id_pohon){

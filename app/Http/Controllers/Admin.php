@@ -397,7 +397,7 @@ class Admin extends Controller
 
 
     public function showuser(){
-        $data = User::all();
+        $data = User::join('pegawais', 'pegawais.id_pegawai', '=', 'users.id_pegawai')->get();
 
         return view('admin.data-user')->with('data', $data);
     }
@@ -419,11 +419,9 @@ class Admin extends Controller
 
         $validatedData['username'] = str_replace('-', '', $validatedData['id_pegawai']);
         
-        // Menggunakan bcrypt() untuk meng-hash password
         $validatedData['password'] = bcrypt($validatedData['password']);
         
         // dd($validatedData); 
-        
         User::create($validatedData);
         return redirect()->intended('user/admin')->with('success', 'Data Pengguna Baru Berhasil Dibuat!');
     }

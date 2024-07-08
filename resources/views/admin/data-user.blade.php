@@ -65,8 +65,17 @@
                                                     <tr>
                                                         <td>{{ $data->id_pegawai }}</td>
                                                         <td>{{ $data->username }}</td>
-                                                        <td>{{ $data->password }}</td>
-                                                        <td>{{ $data->level }}</td>
+                                                        <td>{{ $data->nama_pegawai }}</td>
+                                                        <td>@if ($data->level == 1)
+                                                            Admin
+                                                            @elseif ($data->level == 2)
+                                                            Petugas
+                                                            @elseif ($data->level == 3)
+                                                            Ketua Lab
+                                                            @elseif ($data->level == 4)
+                                                            Manager
+                                                            @endif
+                                                        </td>
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-md">
